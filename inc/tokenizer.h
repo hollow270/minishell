@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnemmass <hnemmass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:39 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/11 16:44:24 by hnemmass         ###   ########.fr       */
+/*   Created: 2025/04/11 16:43:21 by hnemmass          #+#    #+#             */
+/*   Updated: 2025/04/11 16:44:01 by hnemmass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_h
+#ifndef TOKENIZER_H
+# define TOKENIZER_H
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <curses.h>
-# include <term.h>
-# include <unistd.h>
-# include <stdlib.h>
+typedef enum	e_tokens_type
+{
+	TOKEN_WORD,		/*CMD OR ARG*/ 
+	TOKEN_PIPE,		/* | */
+	TOKEN_RED_IN,	/* < */
+	TOKEN_RED_OUT,	/* > */
+	TOKEN_HDOC,		/* << */
+	TOKEN_APPEND,	/* >> */
+}		t_tokens_type;
 
-# include "tokenizer.h"
-
-# define PROMPT "minishell> "
+typedef struct	s_token
+{
+	char			*value;
+	t_tokens_type	type;
+	struct s_token	*next;
+}		t_token;
 
 #endif

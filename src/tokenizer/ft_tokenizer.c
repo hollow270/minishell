@@ -1,47 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tokenizer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hnemmass <hnemmass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:24 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/09 16:55:56 by hnemmass         ###   ########.fr       */
+/*   Created: 2025/04/11 14:29:49 by hnemmass          #+#    #+#             */
+/*   Updated: 2025/04/11 16:36:04 by hnemmass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_putchar(char c)
+int	ft_isspace(char c)
 {
-	write(1, &c, 1);
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
 }
 
-void	ft_putstr(char *s)
+t_token	*ft_tokenizer(char *line)
 {
-	int	i;
+	char	*word;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
-}
-
-int main(int arc, char **argv, char **env)
-{
-	char	*input;
-
-	(void)arc;
-	(void)argv;
-	while (1)
+	while (line[i])
 	{
-		input = readline(PROMPT);
-		if (strcmp("exit", input) == 0)
-			break ;
-		add_history(input);
-		ft_parse(input);
-		free(input);
+		if (ft_isspace(line[i]))
+			i++;
+		while (line[i] != '|' && line[i] != '<' && line[i] != '>')
+		{
+			if (line[i] == '<' && line[i + 1] == '<')
+				i++;
+			if (line[i] == '>' && line[i + 1] == '>')
+				i++;
+			word[j] = line[i];
+		}
 	}
-	free(input);
-	rl_clear_history();
-	return (1);
 }
