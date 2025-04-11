@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   strutils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:39 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/10 16:59:04 by yhajbi           ###   ########.fr       */
+/*   Created: 2025/04/09 17:38:43 by yhajbi            #+#    #+#             */
+/*   Updated: 2025/04/09 17:42:15 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_h
+#include "../inc/minishell.h"
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <curses.h>
-# include <term.h>
-# include <unistd.h>
-# include <stdlib.h>
+int	ft_strlen(char *s)
+{
+	int	i;
 
-# include "structs.h"
-# include "environment.h"
-# include "utils.h"
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
-# define PROMPT "minishell> "
+char	*ft_strdup(char *s)
+{
+	int		i;
+	int		sz;
+	char	*ret;
 
-#endif
+	i = 0;
+	sz = ft_strlen(s);
+	ret = malloc((sz + 1) * sizeof(char));
+	while (s[i])
+	{
+		ret[i] = s[i];
+		i++;
+	}
+	s[i] = '\0';
+	return (ret);
+}

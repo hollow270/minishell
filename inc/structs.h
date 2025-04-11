@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:39 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/10 16:59:04 by yhajbi           ###   ########.fr       */
+/*   Created: 2025/04/09 17:03:11 by yhajbi            #+#    #+#             */
+/*   Updated: 2025/04/10 16:33:37 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_h
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <curses.h>
-# include <term.h>
-# include <unistd.h>
-# include <stdlib.h>
+typedef struct	s_minishell
+{
+	char	*prompt;
+	char	*cmdline;
+	t_env	**env;
+	char	*cwd;
+}				t_minishell;
 
-# include "structs.h"
-# include "environment.h"
-# include "utils.h"
+typedef struct	s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}				t_env;
 
-# define PROMPT "minishell> "
+typedef enum	s_status
+{
+	STATUS_SUCCESS,
+	STATUS_FAILURE,
+	STATUS_MALLOC_FAIL
+}				t_status;
 
 #endif

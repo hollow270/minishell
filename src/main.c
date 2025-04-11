@@ -6,43 +6,40 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 17:16:24 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/09 13:39:23 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/04/10 16:49:33 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
-}
+static t_status	init_minishell(t_minishell **s_minishell, char **env);
 
 int main(int arc, char **argv, char **env)
 {
-	char	*input;
+	t_minishell	s_minishell;
+	t_status	e_status;
 
 	(void)arc;
 	(void)argv;
-	while (1)
+	e_status = init_minishell(&s_minishell, env);
+	if (e_status)
 	{
-		input = readline(PROMPT);
-		if (strcmp("exit", input) == 0)
-			break ;
-		add_history(input);
-		ft_putstr(input);
-		ft_putchar('\n');
-		free(input);
+		free_minishell(&s_minishell);
+		exit(EXIT_FAILURE);
 	}
-	free(input);
-	rl_clear_history();
-	return (1);
+	return (0);
+}
+
+static t_status	init_minishell(t_minishell **s_minishell, char **env)
+{
+	char	*buff;
+
+	*s_minishell = malloc(size_of(t_minishell));
+	if (!*s_minishell)
+		return (STATUS_MALLOC_FAIL);
+	(*s_minishell)->prompt = ft_strdup(PROMPT);
+	(*s_minishell)->env = get_env(env);
+	if (!(*s_minishell)->env)
+		return (STATUS_MALLOC_FAIL);
+	(*s_minishell)->cwd = getcwd(buff, 10);				// change later
 }

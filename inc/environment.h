@@ -1,14 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:20 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/08 17:39:28 by yhajbi           ###   ########.fr       */
+/*   Created: 2025/04/10 16:45:45 by yhajbi            #+#    #+#             */
+/*   Updated: 2025/04/10 16:57:57 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#ifndef ENVIRONMENT_H
+# define ENVIRONMENT_H
 
+static int	count_env_size(char **env);
+
+#endif

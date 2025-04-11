@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 17:16:39 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/04/10 16:59:04 by yhajbi           ###   ########.fr       */
+/*   Created: 2025/04/10 16:57:19 by yhajbi            #+#    #+#             */
+/*   Updated: 2025/04/10 16:58:37 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_h
+#ifndef UTILS_H
+# define UTILS_H
 
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <curses.h>
-# include <term.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# include "structs.h"
-# include "environment.h"
-# include "utils.h"
-
-# define PROMPT "minishell> "
+int		ft_strlen(char *s);
+char	*ft_strdup(char *s);
 
 #endif
